@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block css %}
+  <style>
+    .sector {
+      margin-left: 10%;
+    }
+  </style>
+{% endblock %}
+{% block content %}
+<img src="https://i.gifer.com/yy3.gif" align="right" height="400" width="400">
+<h1 class="title" style="margin-top: 10%;">
+  Welcome to DocSpace!
+</h1>
+<h2 class="subtitle">
+  &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp An easy access Doc Platform
+</h2>
+<a href="{{ url_for('auth.login') }}">
+  <div class="sector">
+    <button class="button is-medium is-danger is-light">Login</button>
+  </div>
+</a>
+
+{% endblock %}

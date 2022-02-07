@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block css %}
+  <link rel="stylesheet" href="static/style.css">
+{% endblock %}
+
+{% block content %}
+<div class="column is-4 is-offset-4">
+    <h3 class="title">Sign Up</h3>
+    <div class="box">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="notification is-danger">
+                {{ messages[0] }} Go to <a href="{{ url_for('auth.login') }}">login page</a>.
+            </div>
+        {% endif %}
+        {% endwith %}
+        <form action="/signup" method="POST">
+            <div class="input-container">
+                <input type="email" name="email" id="email" required><label for="email">Email</label>
+            </div>
+            <div class="input-container">
+                <input type="text" name="name" id="name" required><label for="name">Name</label>
+            </div>
+            <div class="input-container">
+                <input type="password" name="password" id="password" required><label for="password">Password</label>
+            </div>
+            <button class="button is-block is-info is-large is-fullwidth">Sign Up</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
