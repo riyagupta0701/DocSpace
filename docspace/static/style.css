@@ -1,0 +1,60 @@
+.input-container{
+    margin-left: 3%;
+    margin-top: 3%;
+    width: 80%;
+    position:relative;
+    margin-top: 20px;
+	margin-bottom:40px;
+}
+.input-container label{
+    font-weight: bolder;
+	position:absolute;
+	top:10px;
+	left:10%;
+	font-size: 20px;
+    color:#ed0000;
+    padding-bottom: 25px;
+    pointer-events:none;
+	transition: all 0.5s ease-in-out;
+}
+.input-container input{
+    border-radius: 10px;
+    border:2px solid #3074DC;  
+    background:transparent;
+    width:280px;
+    height: 50px;
+    padding:8px 0 5px 0;
+    font-size:14px;
+    color:black;
+    transition: 0.5s;
+}
+.input-container input:focus{ 
+    border:none;	
+    outline:none;
+    border-radius: 0%;
+    border-bottom:3px solid #ed0000;
+}
+.input-container input:valid{
+    border:none;	
+    outline:none;
+    border-radius: 0%;
+    border-bottom:3px solid green;
+}
+.input-container input:focus ~ label{
+	text-align: center;
+    top:-15px;
+	font-size:20px;
+	color: #ed0000;
+	left:0px;
+}
+.input-container input:valid ~ label{
+    text-align: center;
+    top:-15px;
+	font-size:20px;
+	color: green;
+	left:0px;
+}
+#Submit:hover {
+    color: #fff;
+    background-color: #16c445;
+}
