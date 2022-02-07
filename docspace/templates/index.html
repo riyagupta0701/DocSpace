@@ -2,7 +2,10 @@
 {% block css %}
   <style>
     .sector {
-      margin-left: 10%;
+      margin-left: 7%;
+    }
+    #btn2 {
+      margin-left: 50%;
     }
   </style>
 {% endblock %}
@@ -14,10 +17,12 @@
 <h2 class="subtitle">
   &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp An easy access Doc Platform
 </h2>
-<a href="{{ url_for('auth.login') }}">
-  <div class="sector">
-    <button class="button is-medium is-danger is-light">Login</button>
-  </div>
-</a>
-
+<div class="sector">
+  <a href="{{ url_for('auth.login') }}">
+    <button class="button is-medium is-danger is-light">Login</button>&nbsp;&nbsp;&nbsp;
+  </a>
+  <a href="{{ url_for('auth.signup') }}">
+    <button id="#btn2" class="button is-medium is-danger is-light">Sign Up</button>
+  </a>
+</div>
 {% endblock %}
