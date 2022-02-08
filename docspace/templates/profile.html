@@ -1,7 +1,15 @@
 {% extends "base.html" %}
 
+{% block css %}
+<style>
+  
+</style>
+{% endblock%}
+
 {% block content %}
 <h1 class="title">
   Welcome, {{ name }}!
 </h1>
+<button class="button is-medium is-danger">+ Create New Workspace</button>
+<button class="button is-medium is-danger">Join Existing Workspace</button>
 {% endblock %}
