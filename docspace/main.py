@@ -23,5 +23,6 @@ def profile():
             db.session.add(new_workspace)
             db.session.commit()
             # flash('Workspace created!', category='success')
+            # , wsName=wsName, wsDesc=wsDesc
 
-    return render_template('profile.html', name = current_user.name)
+    return render_template('profile.html', name = current_user.name, user=current_user)

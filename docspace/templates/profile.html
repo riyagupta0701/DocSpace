@@ -2,6 +2,10 @@
 
 {% block css %}
 <style>
+  .workspace-buttons {
+    margin-left: 53%;
+  }
+
   label {
     color: black;
     font-size: large;
@@ -10,15 +14,50 @@
   #workSpaceName {
     height: 40px;
   }
+
+  .card {
+    width: 30%
+  }
+
+  #status {
+    font-weight: lighter;
+    font-size: smaller;
+  }
 </style>
 {% endblock%}
 
 {% block content %}
-<h1 class="title">
-  Welcome, {{ name }}!
-</h1>
-<button class="button is-medium is-danger" onclick="createWork()">+ Create New Workspace</button>
-<button class="button is-medium is-danger">Join Existing Workspace</button>
+<div>
+  <h1 class="title">
+    Welcome, {{ name }}!
+  </h1>
+
+  <div class="workspace-buttons">
+    <button class="button is-medium is-danger" onclick="createWork()">+ Create New Workspace</button>
+    <button class="button is-medium is-danger" onclick="joinWork()">Join Existing Workspace</button>
+  </div>
+</div>
+
+{% for note in user.workSpaces %}
+<div class="card">
+  <header class="card-header">
+    <p class="card-header-title">
+      {{ note.workSpaceName }}
+
+      {% if current_user.id == note.workSpaceAdminID %}
+        <span id="status">&nbsp; - Admin</span></p>
+      {% else %}
+        <br><span id="status">Member</span></p>
+      {% endif %}
+  </header>
+  <div class="card-content">
+    <div class="content">
+      {{ note.workSpaceDesc }}
+    </div>
+  </div>
+</div>
+<br>
+{% endfor %}
 
 <div class="modal" id="workSpaceModal" style="display:none;">
   <div class="modal-card">
@@ -27,7 +66,6 @@
     </header>
     <form method="POST">
       <section class="modal-card-body">
-          <p class="model-card-subtitle">Workspace Name</p>
           <label for="workSpaceName">Workspace Name</label><br><br>
           <input type="text" name="workSpaceName" size="54" id="workSpaceName" required><br><br>
           <label for="workSpace Desc">Workspace Description</label><br><br>
@@ -41,12 +79,35 @@
   </div>
 </div>
 
+<div class="modal" id="joinWorkSpaceModal" style="display:none;">
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Join Workspace</p>
+    </header>
+    <form method="POST">
+      <section class="modal-card-body">
+          <label for="workSpaceName">Workspace Name</label><br><br>
+          <input type="text" name="workSpaceName" size="54" id="workSpaceName" required><br><br>
+          <label for="workSpace Desc">Workspace Description</label><br><br>
+          <textarea name="workSpaceDesc" id="workSpaceDesc" cols="53" rows="10" required></textarea>
+      </section>
+      <footer class="modal-card-foot">
+        <button class="button is-block is-info" type="submit">Join Workspace</button>
+        <button class="button" onclick="closeCreate()">Cancel</button>
+      </footer>
+    </form>
+  </div>
+</div>
+
 <script>
   function createWork() {
     document.getElementById("workSpaceModal").style.display = "block";
   }
   function closeCreate() {
     document.getElementById("workSpaceModal").style.display = "none";
+  }
+  function joinWork() {
+    document.getElementById("workSpaceModal").style.display = "block";
   }
 </script>
 {% endblock %}

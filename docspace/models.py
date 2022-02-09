@@ -4,11 +4,11 @@ from . import db
 
 class Workspace(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    workSpaceName = db.Column(db.String(100), unique=True)
+    workSpaceName = db.Column(db.String(100))
     workSpaceDesc = db.Column(db.String(2000))
     workSpaceAdminID = db.Column(db.Integer, db.ForeignKey('user.id'))
 
-class User(UserMixin, db.Model):
+class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(100), unique=True)
     password = db.Column(db.String(100))
