@@ -2,7 +2,14 @@
 
 {% block css %}
 <style>
-  
+  label {
+    color: black;
+    font-size: large;
+  }
+
+  #workSpaceName {
+    height: 40px;
+  }
 </style>
 {% endblock%}
 
@@ -10,6 +17,36 @@
 <h1 class="title">
   Welcome, {{ name }}!
 </h1>
-<button class="button is-medium is-danger">+ Create New Workspace</button>
+<button class="button is-medium is-danger" onclick="createWork()">+ Create New Workspace</button>
 <button class="button is-medium is-danger">Join Existing Workspace</button>
+
+<div class="modal" id="workSpaceModal" style="display:none;">
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Create Workspace</p>
+    </header>
+    <section class="modal-card-body">
+      <form action="" method="POST">
+        <p class="model-card-subtitle">Workspace Name</p>
+        <label for="workSpaceName">Workspace Name</label><br><br>
+        <input type="text" name="workSpaceName" size="54" id="workSpaceName" required><br><br>
+        <label for="workSpace Desc">Workspace Description</label><br><br>
+        <textarea name="workSpaceDesc" id="workSpaceDesc" cols="53" rows="10" required></textarea>
+      </form>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button is-block is-info">Create Workspace</button>
+      <button class="button" onclick="closeCreate()">Cancel</button>
+    </footer>
+  </div>
+</div>
+
+<script>
+  function createWork() {
+    document.getElementById("workSpaceModal").style.display = "block";
+  }
+  function closeCreate() {
+    document.getElementById("workSpaceModal").style.display = "none";
+  }
+</script>
 {% endblock %}
