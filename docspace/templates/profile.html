@@ -86,10 +86,11 @@
     </header>
     <form method="POST">
       <section class="modal-card-body">
-          <label for="workSpaceName">Workspace Name</label><br><br>
-          <input type="text" name="workSpaceName" size="54" id="workSpaceName" required><br><br>
-          <label for="workSpace Desc">Workspace Description</label><br><br>
-          <textarea name="workSpaceDesc" id="workSpaceDesc" cols="53" rows="10" required></textarea>
+          <ul>
+            {% for note in user.workSpaces %}
+            <li>{{ note.workSpaceName }}</li>
+            {% endfor %}
+          </ul>
       </section>
       <footer class="modal-card-foot">
         <button class="button is-block is-info" type="submit">Join Workspace</button>
