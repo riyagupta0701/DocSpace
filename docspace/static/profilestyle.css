@@ -1,0 +1,21 @@
+.workspace-buttons {
+    margin-left: 53%;
+  }
+
+  label {
+    color: black;
+    font-size: large;
+  }
+
+  #workSpaceName {
+    height: 40px;
+  }
+
+  .card {
+    width: 30%
+  }
+
+  #status {
+    font-weight: lighter;
+    font-size: smaller;
+  }
