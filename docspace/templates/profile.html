@@ -8,14 +8,30 @@
 <div>
   <div>
     <h1 class="title">
-      Welcome, {{ name }}!!
+      Welcome, {{ name }}!
     </h1>
   </div>
   <div class="workspace-buttons">
     <button class="button is-medium is-danger" onclick="createWork()">+ Create New Workspace</button>
     <button class="button is-medium is-danger" onclick="joinWork()">Join Existing Workspace</button>
   </div>
-</div><br><br>
+</div>
+
+<form enctype="multipart/form-data" method="POST" name="uploadDocsForm">
+<div class="file">
+  <label class="file-label">
+    <input class="file-input" type="file" name="file" id="file">
+    <span class="file-cta">
+      <span class="file-label">
+        Upload documents
+      </span>
+    </span>
+  </label>
+  <div>
+    <input class="button is-block is-warning is-light" type="submit" name="uploadDocsForm">
+  </div>
+</div>
+</form>
 
 {% for note in user.workSpaces %}
 <div class="card">
@@ -56,7 +72,7 @@
           <textarea name="workSpaceDesc" id="workSpaceDesc" cols="53" rows="10" required></textarea>
       </section>
       <footer class="modal-card-foot">
-        <button class="button is-block is-info" type="submit">Create Workspace</button>
+        <button class="button is-block is-info" type="submit" name="createForm">Create Workspace</button>
         <button class="button" onclick="closeCreate()">Cancel</button>
       </footer>
     </form>

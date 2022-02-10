@@ -1,7 +1,8 @@
+from fileinput import filename
 from unicodedata import category
 from flask import Blueprint, render_template, request, flash, jsonify
 from flask_login import login_required, current_user
-from .models import Workspace
+from .models import Upload, Workspace
 from . import db
 import json
 
@@ -15,13 +16,22 @@ def index():
 @login_required
 def profile():
     if request.method == 'POST':
-        wsName = request.form.get('workSpaceName')
-        wsDesc = request.form.get('workSpaceDesc')
+        if 'createForm' in request.form:
+            wsName = request.form.get('workSpaceName')
+            wsDesc = request.form.get('workSpaceDesc')
 
-        if wsName != "" and wsDesc != "":
-            new_workspace = Workspace(workSpaceName=wsName, workSpaceDesc=wsDesc, workSpaceAdminID=current_user.id)
-            db.session.add(new_workspace)
+            if wsName != "" and wsDesc != "":
+                new_workspace = Workspace(workSpaceName=wsName, workSpaceDesc=wsDesc, workSpaceAdminID=current_user.id)
+                db.session.add(new_workspace)
+                db.session.commit()
+                # flash('Workspace created!', category='success')
+
+        if 'uploadDocsForm' in request.form:
+            file = request.files['file']
+
+            new_upload = Upload(filename=file.filename, data=file.read(), uploadedBy=current_user.id)
+            db.session.add(new_upload)
             db.session.commit()
-            # flash('Workspace created!', category='success')
+            # return 'Uploaded: {file.filename}'
 
     return render_template('profile.html', name = current_user.name, user=current_user)
