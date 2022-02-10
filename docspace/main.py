@@ -24,7 +24,6 @@ def profile():
                 new_workspace = Workspace(workSpaceName=wsName, workSpaceDesc=wsDesc, workSpaceAdminID=current_user.id)
                 db.session.add(new_workspace)
                 db.session.commit()
-                # flash('Workspace created!', category='success')
 
         if 'uploadDocsForm' in request.form:
             file = request.files['file']
@@ -32,6 +31,5 @@ def profile():
             new_upload = Upload(filename=file.filename, data=file.read(), uploadedBy=current_user.id)
             db.session.add(new_upload)
             db.session.commit()
-            # return 'Uploaded: {file.filename}'
 
     return render_template('profile.html', name = current_user.name, user=current_user)
