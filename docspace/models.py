@@ -4,8 +4,8 @@ from . import db
 
 class Workspace(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    workSpaceName = db.Column(db.String(100))
-    workSpaceDesc = db.Column(db.String(2000))
+    workSpaceName = db.Column(db.String(100), nullable=False)
+    workSpaceDesc = db.Column(db.String(2000), nullable=False)
     workSpaceAdminID = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 class User(db.Model, UserMixin):

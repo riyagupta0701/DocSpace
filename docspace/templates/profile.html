@@ -6,10 +6,11 @@
 
 {% block content %}
 <div>
-  <h1 class="title">
-    Welcome, {{ name }}!
-  </h1>
-
+  <div>
+    <h1 class="title">
+      Welcome, {{ name }}!
+    </h1>
+  </div>
   <div class="workspace-buttons">
     <button class="button is-medium is-danger" onclick="createWork()">+ Create New Workspace</button>
     <button class="button is-medium is-danger" onclick="joinWork()">Join Existing Workspace</button>
@@ -47,7 +48,7 @@
     <header class="modal-card-head">
       <p class="modal-card-title">Create Workspace</p>
     </header>
-    <form method="POST">
+    <form name="createForm" method="POST">
       <section class="modal-card-body">
           <label for="workSpaceName">Workspace Name</label><br><br>
           <input type="text" name="workSpaceName" size="54" id="workSpaceName" required><br><br>
@@ -67,19 +68,19 @@
     <header class="modal-card-head">
       <p class="modal-card-title">Join Workspace</p>
     </header>
-    <form method="POST">
+    <!-- <form name="joinForm" method="POST"> -->
       <section class="modal-card-body">
           <ul>
-            {% for note in user.workSpaces %}
+            <!-- {% for note in user.workSpaces %}
             <li>{{ note.workSpaceName }}</li>
-            {% endfor %}
+            {% endfor %} -->
           </ul>
       </section>
       <footer class="modal-card-foot">
         <button class="button is-block is-info" type="submit">Join Workspace</button>
-        <button class="button" onclick="closeCreate()">Cancel</button>
+        <button class="button" onclick="closeJoin()">Cancel</button>
       </footer>
-    </form>
+    <!-- </form> -->
   </div>
 </div>
 
@@ -91,7 +92,10 @@
     document.getElementById("workSpaceModal").style.display = "none";
   }
   function joinWork() {
-    document.getElementById("workSpaceModal").style.display = "block";
+    document.getElementById("joinWorkSpaceModal").style.display = "block";
+  }
+  function closeJoin() {
+    document.getElementById("joinWorkSpaceModal").style.display = "none";
   }
 </script>
 {% endblock %}
