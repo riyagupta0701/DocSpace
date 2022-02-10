@@ -12,7 +12,8 @@
   }
 
   .card {
-    width: 30%
+    width: 30%;
+    margin-left: 50%;
   }
 
   #status {
