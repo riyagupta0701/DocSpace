@@ -1,10 +1,9 @@
-from fileinput import filename
 from unicodedata import category
-from flask import Blueprint, render_template, request, flash, jsonify
+from io import BytesIO
+from flask import Blueprint, render_template, request, flash, send_file
 from flask_login import login_required, current_user
 from .models import Upload, Workspace
 from . import db
-import json
 
 main = Blueprint('main', __name__)
 
@@ -33,3 +32,8 @@ def profile():
             db.session.commit()
 
     return render_template('profile.html', name = current_user.name, user=current_user)
+
+@main.route('/profile/<upload_id>')
+def profile_view(upload_id):
+    upload = Upload.query.filter_by(id=upload_id).first()
+    return send_file(BytesIO(upload.data), attachment_filename=upload.filename, as_attachment=True)

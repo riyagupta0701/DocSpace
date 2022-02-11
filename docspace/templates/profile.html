@@ -36,7 +36,7 @@
     </p>
   </header>
   {% for doc in user.files %}
-    {{ doc.filename }} <br>
+    <a href="/profile/{{doc.id}}">{{ doc.filename }}</a> <br>
   {% endfor %}
 </div>
 
